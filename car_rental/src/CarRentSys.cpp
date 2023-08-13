@@ -2,6 +2,7 @@
 #include <list>
 #include <string>
 #include <stdexcept>
+#include <iostream>
 CarRentSys::CarRentSys()
 {
 
@@ -40,12 +41,16 @@ Driver CarRentSys::find_nearest_driver(Customer customer)
 {
     std::list<Driver> avlb_drivers = get_avaliable_drivers();
     Driver best_driver = avlb_drivers.front();
-    Location want = customer.get_want_loc();
-    float best_dist = best_driver.get_distance_to_loc(want);
+    Location curr = customer.get_curr_loc();
+    float best_dist = best_driver.get_distance_to_loc(curr);
+    //std::cout << "Best Driver init " << best_driver.get_name() << std::endl;
+    //std::cout << "Best Driver init dist " << std::to_string(best_dist) << std::endl;
     std::list<Driver>::iterator it;
     for (it = avlb_drivers.begin(); it != avlb_drivers.end(); ++it){
-        Location want = customer.get_want_loc();
-        float dist = it->get_distance_to_loc(want);
+        Location curr = customer.get_curr_loc();
+        float dist = it->get_distance_to_loc(curr);
+        //std::cout << "it driver " << it->get_name() << std::endl;
+        //std::cout << "id driver dist " << std::to_string(dist) << std::endl;
         if( dist < best_dist){
             best_driver = *it;
             best_dist = dist;
@@ -72,10 +77,10 @@ Driver CarRentSys::find_cheapest_driver(Customer customer)
 void CarRentSys::drive_customer(Customer &customer, std::string drive_type)
 {
     //Driver best_driver;
-    if(drive_type.compare("cheap")){
+    if(drive_type.compare("cheap") == 0){
         Driver best_driver = this->find_cheapest_driver(customer);
         best_driver.drive_customer(customer);
-    }else if (drive_type.compare("near")){
+    }else if (drive_type.compare("near") == 0){
         Driver best_driver = this->find_nearest_driver(customer);
         best_driver.drive_customer(customer);
     }else{

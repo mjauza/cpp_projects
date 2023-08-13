@@ -17,7 +17,7 @@ int main()
     Customer c_masa = Customer("Masa", 2, Location(0.1,0.1), Location(2,2));
 
 
-    Customer c_maja = Customer("Masa", 2, Location(0.1,0.1), Location(3,3));
+    Customer c_maja = Customer("MAJA", 2, Location(0.1,0.1), Location(3,3));
 
     CarRentSys uber = CarRentSys();
     uber.add_driver(d_david);

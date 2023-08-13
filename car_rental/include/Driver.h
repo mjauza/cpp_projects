@@ -16,6 +16,7 @@ class Driver
         void drive_customer(Customer &customer);
         bool operator== ( const Driver &rhs );
         bool is_driving();
+        std::string get_name();
 
     protected:
         Location location;

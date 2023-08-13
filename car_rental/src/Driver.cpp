@@ -68,6 +68,11 @@ void Driver::drive_customer(Customer &customer)
     customer.go_to_wanted_location();
 }
 
+std::string Driver::get_name()
+{
+    return this -> name;
+}
+
 Driver::~Driver()
 {
     //dtor
