@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1692101621 source:c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\src\inventory.cpp
+	"Inventory.h"
+	<iostream>
+
+1692101452 c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\include\inventory.h
+	"Product.h"
+	<list>
+
+1692103974 c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\include\product.h
+	<string>
+
+1692103971 source:c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\src\product.cpp
+	"Product.h"
+
+1692107233 source:c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\main.cpp
+	<iostream>
+	"Inventory.h"
+	"Product.h"
+	"Sale.h"
+	"SalesMngSys.h"
+
+1692103813 c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\include\sale.h
+	"Product.h"
+
+1692107567 source:c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\src\sale.cpp
+	"Sale.h"
+	<iostream>
+	<string>
+
+1692107234 c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\include\salesmngsys.h
+	"Sale.h"
+	<list>
+	"Inventory.h"
+	"Product.h"
+
+1692107458 source:c:\users\david\documents\cpp_projects\cpp_projects\simple_examples\src\salesmngsys.cpp
+	"SalesMngSys.h"
+	"Sale.h"
+	<string>
+	<map>
+	<iostream>
+
