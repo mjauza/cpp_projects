@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="bank_account" />
+		<Option title="SalesMngSys" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/bank_account" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/SalesMngSys" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/bank_account" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/SalesMngSys" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,11 +34,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/BankAccount.h" />
+		<Unit filename="include/Inventory." />
+		<Unit filename="include/Product.h" />
+		<Unit filename="include/Sale.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/BankAccount.cpp" />
-		<Extensions>
-			<lib_finder disable_auto="1" />
-		</Extensions>
+		<Unit filename="src/Inventory." />
+		<Unit filename="src/Product.cpp" />
+		<Unit filename="src/Sale.cpp" />
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

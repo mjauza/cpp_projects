@@ -1,0 +1,11 @@
+#include "Inventory."
+
+Inventory::Inventory()
+{
+    //ctor
+}
+
+Inventory::~Inventory()
+{
+    //dtor
+}

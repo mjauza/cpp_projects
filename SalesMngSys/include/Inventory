@@ -1,0 +1,16 @@
+#ifndef INVENTORY_
+#define INVENTORY_
+
+
+class Inventory
+{
+    public:
+        Inventory();
+        virtual ~Inventory();
+
+    protected:
+
+    private:
+};
+
+#endif // INVENTORY_

@@ -1,0 +1,16 @@
+#ifndef INVEN_
+#define INVEN_
+
+
+class Inven
+{
+    public:
+        Inven();
+        virtual ~Inven();
+
+    protected:
+
+    private:
+};
+
+#endif // INVEN_

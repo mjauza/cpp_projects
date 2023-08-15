@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1692098524 source:c:\users\david\documents\cpp_projects\cpp_projects\salesmngsys\src\product.cpp
+	"Product.h"
+	<stdexcept>
+
+1692098524 c:\users\david\documents\cpp_projects\cpp_projects\salesmngsys\include\product.h
+	<string>
+

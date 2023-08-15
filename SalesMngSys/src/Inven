@@ -1,0 +1,11 @@
+#include "Inven."
+
+Inven::Inven()
+{
+    //ctor
+}
+
+Inven::~Inven()
+{
+    //dtor
+}
