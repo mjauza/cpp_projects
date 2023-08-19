@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1692440254 source:c:\users\david\documents\cpp_projects\cpp_projects\data_structures\main.cpp
+	<iostream>
+	"VecExample.h"
+	<vector>
+	<string>
+	"ListExample.h"
+
+1692431600 c:\users\david\documents\cpp_projects\cpp_projects\data_structures\include\arrexample.h
+	<memory>
+
+1692437847 c:\users\david\documents\cpp_projects\cpp_projects\data_structures\include\vecexample.h
+	<vector>
+
+1692437912 source:c:\users\david\documents\cpp_projects\cpp_projects\data_structures\src\vecexample.cpp
+	"VecExample.h"
+	<iostream>
+	<stdexcept>
+
+1692444543 c:\users\david\documents\cpp_projects\cpp_projects\data_structures\include\listexample.h
+	<list>
+
+1692444444 source:c:\users\david\documents\cpp_projects\cpp_projects\data_structures\src\listexample.cpp
+	"ListExample.h"
+	<iostream>
+	<string>
+
+1692447097 source:c:\users\david\documents\cpp_projects\cpp_projects\data_structures\src\mapexample.cpp
+	"MapExample.h"
+	<iostream>
+
+1692447615 c:\users\david\documents\cpp_projects\cpp_projects\data_structures\include\mapexample.h
+	<map>
+	<string>
+
