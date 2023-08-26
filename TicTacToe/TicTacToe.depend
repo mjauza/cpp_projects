@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1692458495 source:c:\users\david\documents\cpp_projects\cpp_projects\tictactoe\main.cpp
+	<iostream>
+	"Board.h"
+	"GUI.h"
+
+1692451623 c:\users\david\documents\cpp_projects\cpp_projects\tictactoe\include\board.h
+	<array>
+	<string>
+
+1692458233 c:\users\david\documents\cpp_projects\cpp_projects\tictactoe\include\gui.h
+	"Board.h"
+
+1692457569 source:c:\users\david\documents\cpp_projects\cpp_projects\tictactoe\src\board.cpp
+	"Board.h"
+	<iostream>
+	<string>
+

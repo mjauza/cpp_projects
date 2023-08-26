@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="pointer_example" />
+		<Option title="data_structures" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/pointer_example" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/data_structures" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/pointer_example" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/data_structures" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,11 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/BM.h" />
-		<Unit filename="include/Rectangle.h" />
+		<Unit filename="include/ListExample.h" />
+		<Unit filename="include/MapExample.h" />
+		<Unit filename="include/VecExample.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/BM.cpp" />
-		<Unit filename="src/Rectangle.cpp" />
-		<Extensions />
+		<Unit filename="src/ListExample.cpp" />
+		<Unit filename="src/MapExample.cpp" />
+		<Unit filename="src/VecExample.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

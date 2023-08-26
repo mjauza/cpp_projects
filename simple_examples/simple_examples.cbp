@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Inventory.h" />
+		<Unit filename="include/Product.h" />
+		<Unit filename="include/Sale.h" />
+		<Unit filename="include/SalesMngSys.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Inventory.cpp" />
+		<Unit filename="src/Product.cpp" />
+		<Unit filename="src/Sale.cpp" />
+		<Unit filename="src/SalesMngSys.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

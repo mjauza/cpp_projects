@@ -34,13 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/Inventory." />
+		<Unit filename="include/Inventory.h" />
 		<Unit filename="include/Product.h" />
 		<Unit filename="include/Sale.h" />
+		<Unit filename="include/SalesSys.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Inventory." />
+		<Unit filename="src/Inventory.cpp" />
 		<Unit filename="src/Product.cpp" />
 		<Unit filename="src/Sale.cpp" />
+		<Unit filename="src/SalesSys.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
