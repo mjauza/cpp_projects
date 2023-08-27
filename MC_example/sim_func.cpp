@@ -8,6 +8,7 @@
 #include <vector>
 #include <xtensor/xadapt.hpp>
 #include <tuple>
+#include <xtensor/xoperation.hpp>
 
 SimFunc::SimFunc() 
 {
@@ -81,3 +82,59 @@ xt::xarray<double> SimFunc::sim_merton_GBM(int n, float mu, float sigma, float l
 }
 
 
+std::tuple<xt::xarray<double>, xt::xarray<double>> SimFunc::sim_kou_jumps(float max_time, float lambda_arrival, float p_pos_jump, float lambda_pos, float lambda_neg)
+{
+	assert((p_pos_jump < 1) && (p_pos_jump > 0));
+	xt::xarray<double> arrival_times = sim_possion_arrival(max_time, lambda_arrival);
+	int n = arrival_times.size();
+	xt::xarray<double> pos_jumps = xt::random::exponential<double>({ n }, lambda_pos);
+	xt::xarray<double> neg_jumps = -xt::random::exponential<double>({ n }, lambda_neg);
+	xt::xarray<int> jump_sides = xt::random::binomial<int>({ n }, 1, p_pos_jump);
+	xt::xarray<double> jump_sizes = xt::where(jump_sides > 0, pos_jumps, neg_jumps);
+
+	xt::xarray<double> process_values = xt::cumsum(jump_sizes);
+	return std::make_tuple(arrival_times, process_values);
+}
+
+xt::xarray<double> SimFunc::sim_kou_GBM(int n, float mu, float sigma, float lambda_arrival, float p_pos_jump, float lambda_pos, float lambda_neg, float dt, float S0)
+{
+	float max_time = n * dt;
+	std::tuple<xt::xarray<double>, xt::xarray<double>> kou_process = sim_kou_jumps(max_time,  lambda_arrival, p_pos_jump, lambda_pos, lambda_neg);
+	xt::xarray<double> kou_arrivals = std::get<0>(kou_process);
+	xt::xarray<double> kou_values = std::get<1>(kou_process);
+	xt::xarray<double> kou_values_reindex = get_values_of_jump_process(n, dt, kou_arrivals, kou_values);
+	xt::xarray<double> gbm = sim_GBM(n, mu, sigma, dt, S0);
+	xt::xarray<double> jump_gbm = gbm * xt::exp(kou_values_reindex);
+	return jump_gbm;
+}
+
+xt::xarray<double> SimFunc::sim_Gamma(int n, float a, float b, float dt)
+{	
+	assert(a > 0);
+	assert(b > 0);
+	assert(dt > 0);
+	xt::xarray<double> g = xt::random::gamma<double>({ n }, a * dt, 1 / b);
+	xt::xarray<double> G0_arr = { 0 };
+	xt::xarray<double> Gt_arr = xt::concatenate(xt::xtuple(G0_arr, g));
+	xt::xarray<double> G_path = xt::cumsum(Gt_arr);
+	return G_path;
+}
+
+xt::xarray<double> SimFunc::sim_VG(int n, float sigma, float nu, float theta, float dt)
+{
+	
+	float mu_p = std::sqrt(theta * theta + 2 * sigma * sigma / nu) / 2 + theta / 2;
+	float mu_q = std::sqrt(theta * theta + 2 * sigma * sigma / nu) / 2 - theta / 2;
+		
+	float a_p = mu_p;
+	float b_p = mu_p*mu_p*nu;
+	xt::xarray<double> g_plus = sim_Gamma(n, a_p, b_p, dt);
+
+	float a_m = mu_q;
+	float b_m = mu_q * mu_q * nu;
+	xt::xarray<double> g_minus = sim_Gamma(n, a_m, b_m, dt);
+	
+	xt::xarray<double> G_path = g_plus - g_minus;
+
+	return G_path;
+}

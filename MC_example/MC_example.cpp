@@ -24,7 +24,25 @@ int main()
     cout << "Merton values: " << merton_values << endl;
     */
 
+    /*
     xt::xarray<double> merton_gbm = SimFunc::sim_merton_GBM(10, 0.05, 0.2, 1, 0, 1);
     cout << "Merton GBM: " << merton_gbm << endl;
+    */
+    
+    /*
+    std::tuple<xt::xarray<double>, xt::xarray<double>> kou_process = SimFunc::sim_kou_jumps(10, 1, 0.5, 1, 1);
+    xt::xarray<double> kou_arrivals = std::get<0>(kou_process);
+    xt::xarray<double> kou_values = std::get<1>(kou_process);
+    std::cout << "Kou arrivals: " << kou_arrivals << std::endl;
+    std::cout << "Kou values: " << kou_values << std::endl;
+    */
+    
+    /*
+    xt::xarray<double> kou_gbm = SimFunc::sim_kou_GBM(10, 0.05, 0.2, 1, 0.5, 1, 1);
+    std::cout << "Kou GBM: " << kou_gbm << std::endl;
+    */
+
+    xt::xarray<double> vg = SimFunc::sim_VG(10, 10, 10, 10);
+    std::cout << "VG: " << vg << std::endl;
     return 0;
 }
