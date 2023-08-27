@@ -9,6 +9,7 @@
 #include <xtensor/xadapt.hpp>
 #include <tuple>
 #include <xtensor/xoperation.hpp>
+//#include <xtensor/xmath.hpp>
 
 SimFunc::SimFunc() 
 {
@@ -137,4 +138,51 @@ xt::xarray<double> SimFunc::sim_VG(int n, float sigma, float nu, float theta, fl
 	xt::xarray<double> G_path = g_plus - g_minus;
 
 	return G_path;
+}
+
+xt::xarray<double> SimFunc::sim_BM(xt::xarray<double> times)
+{
+	xt::xarray<double> time0 = { 0 };
+	xt::xarray<double> extend_times = xt::concatenate(xt::xtuple(time0, times));
+	
+	xt::xarray<double> time_inc = xt::diff(extend_times);
+	xt::xarray<double> z = xt::random::randn<double>({ times.size()}, 0.0, 1.0);
+	xt::xarray<double> bm_inc = xt::sqrt(time_inc) * z;
+	xt::xarray<double> bm = xt::cumsum(bm_inc);
+	return bm;
+}
+
+xt::xarray<double> SimFunc::sim_IG_rv(int n, float a, float b)
+{
+	xt::xarray<double> v = xt::random::randn<double>({ n }, 0.0, 1.0);
+	xt::xarray<double> y = xt::pow(v, 2);
+	xt::xarray<double> x = (a / b) + y / (2 * b * b) - xt::sqrt(4 * a * b * y + xt::pow(y, 2)) / (2 * b * b);
+	xt::xarray<double> u = xt::random::rand<double>({ n }, 0, 1);
+	xt::xarray<double> c = a / (a + x * b);
+	xt::xarray<double> x_alt = (a * a) / (b * b * x);
+	xt::xarray<double> ig = xt::where(u <= c, x, x_alt);
+	return ig;
+}
+
+xt::xarray<double> SimFunc::sim_IG(int n, float a, float b, float dt)
+{
+	xt::xarray<double> i_arr = sim_IG_rv(n, a, b);
+	xt::xarray<double> ig0 = { 0 };
+	xt::xarray<double> ig_inc = xt::concatenate(xt::xtuple(ig0, i_arr));
+	xt::xarray<double> ig = xt::cumsum(ig_inc);
+	return ig;
+}
+
+xt::xarray<double> SimFunc::sim_NIG(int n, float alpha, float beta, float delta, float dt)
+{
+	assert(alpha > 0);
+	assert((beta < alpha) && (beta > -alpha));
+	assert(delta > 0);
+	float a = 1;
+	float b = delta * std::sqrt(alpha*alpha - beta*beta);
+
+	xt::xarray<double> ig = sim_IG(n, a, b, dt);
+	xt::xarray<double> W = sim_BM(ig);
+	xt::xarray<double> nig = beta * delta * delta * ig + delta * W;
+	return nig;
 }

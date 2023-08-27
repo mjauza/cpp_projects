@@ -22,6 +22,14 @@ class SimFunc
 		
 		static xt::xarray<double> sim_VG(int n, float sigma, float nu, float theta, float dt = 1);
 		static xt::xarray<double> sim_Gamma(int n, float a, float b, float dt = 1);
+
+		static xt::xarray<double> sim_BM(xt::xarray<double> times);
+		static xt::xarray<double> sim_IG_rv(int n, float a, float b);
+
+		static xt::xarray<double> sim_IG(int n, float a, float b, float dt = 1);
+		
+		static xt::xarray<double> sim_NIG(int n, float alpha, float beta, float delta, float dt = 1);
+		
 };
 
 

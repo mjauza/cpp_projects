@@ -42,7 +42,29 @@ int main()
     std::cout << "Kou GBM: " << kou_gbm << std::endl;
     */
 
+    /*
     xt::xarray<double> vg = SimFunc::sim_VG(10, 10, 10, 10);
     std::cout << "VG: " << vg << std::endl;
+    */
+
+    /*
+    xt::xarray<double> times = {1, 2, 3};
+    xt::xarray<double> bm_at_times = SimFunc::sim_BM(times);
+    std::cout << "BM at times: " << bm_at_times << std::endl;
+    */
+
+    /*
+    xt::xarray<double> ig_rvs = SimFunc::sim_IG_rv(10, 1, 1);
+    std::cout << "IG rvs: " << ig_rvs << std::endl;
+    */
+
+    /*
+    xt::xarray<double> ig = SimFunc::sim_IG(10, 1, 1, 1);
+    std::cout << "IG process: " << ig << std::endl;
+    */
+
+    xt::xarray<double> nig = SimFunc::sim_NIG(10, 2, 1, 1);
+    std::cout << "NIG process: " << nig << std::endl;
+    
     return 0;
 }
