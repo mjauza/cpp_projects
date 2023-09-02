@@ -9,6 +9,8 @@
 #include <xtensor/xadapt.hpp>
 #include <tuple>
 #include <xtensor/xoperation.hpp>
+#include <xtensor/xview.hpp>
+
 //#include <xtensor/xmath.hpp>
 
 SimFunc::SimFunc() 
@@ -29,6 +31,18 @@ xt::xarray<double> SimFunc::sim_GBM(int n, float mu, float sigma, float dt, floa
 	xt::xarray<double> St_arr = xt::concatenate(xt::xtuple(S0_arr, St_inc));
 	xt::xarray<double> S_path = xt::cumprod(St_arr);	
 	return S_path;
+}
+
+xt::xarray<double> SimFunc::sim_GBM_paths(int num_paths, int n, float mu, float sigma, float dt, float S0)
+{
+	xt::xarray<double> paths = xt::zeros<double>({ n + 1, num_paths });
+	for (int i = 0; i < num_paths; i++) {
+		xt::xarray<double> S_path = sim_GBM(n, mu, sigma, dt, S0);
+		auto col = xt::col(paths, i);
+		col = S_path;
+	}
+	return paths;
+
 }
 
 xt::xarray<double> SimFunc::sim_possion_arrival(float max_time, float lambda)
@@ -80,6 +94,19 @@ xt::xarray<double> SimFunc::sim_merton_GBM(int n, float mu, float sigma, float l
 	xt::xarray<double> gbm = sim_GBM(n, mu, sigma, dt, S0);
 	xt::xarray<double> jump_gbm = gbm * xt::exp(merton_values_reindex);
 	return jump_gbm;
+}
+
+
+xt::xarray<double> SimFunc::sim_merton_GBM_paths(int num_paths, int n, float mu, float sigma, float lambda, float jump_mu, float jump_sigma, float dt, float S0)
+{
+	xt::xarray<double> paths = xt::zeros<double>({ n + 1, num_paths });
+	for (int i = 0; i < num_paths; i++) {
+		xt::xarray<double> S_path = sim_merton_GBM(n, mu, sigma, lambda, jump_mu, jump_sigma, dt, S0);
+		auto col = xt::col(paths, i);
+		col = S_path;
+	}
+	return paths;
+
 }
 
 

@@ -29,6 +29,9 @@ class SimFunc
 		static xt::xarray<double> sim_IG(int n, float a, float b, float dt = 1);
 		
 		static xt::xarray<double> sim_NIG(int n, float alpha, float beta, float delta, float dt = 1);
+
+		static xt::xarray<double> sim_GBM_paths(int num_paths, int n, float mu, float sigma, float dt, float S0);
+		static xt::xarray<double> sim_merton_GBM_paths(int num_paths, int n, float mu, float sigma, float lambda, float jump_mu, float jump_sigma, float dt, float S0);
 		
 };
 

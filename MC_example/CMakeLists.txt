@@ -12,7 +12,7 @@ endif()
 project ("MC_example")
 
 # Add source to this project's executable.
-add_executable (MC_example "MC_example.cpp" "MC_example.h" "sim_func.cpp" "sim_func.h")
+add_executable (MC_example "MC_example.cpp" "MC_example.h" "sim_func.cpp" "sim_func.h" "pricing_fun.cpp" "pricing_fun.h" "intergral_fun.cpp" "integral_fun.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET MC_example PROPERTY CXX_STANDARD 20)
