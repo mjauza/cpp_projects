@@ -32,6 +32,7 @@ class SimFunc
 
 		static xt::xarray<double> sim_GBM_paths(int num_paths, int n, float mu, float sigma, float dt, float S0);
 		static xt::xarray<double> sim_merton_GBM_paths(int num_paths, int n, float mu, float sigma, float lambda, float jump_mu, float jump_sigma, float dt, float S0);
+		static xt::xarray<double> sim_kou_GBM_paths(int num_paths, int n, float mu, float sigma, float lambda_arrival, float p_pos_jump, float lambda_pos, float lambda_neg, float dt = 1, float S0 = 1);
 		
 };
 

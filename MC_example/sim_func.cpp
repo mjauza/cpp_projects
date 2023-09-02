@@ -136,6 +136,17 @@ xt::xarray<double> SimFunc::sim_kou_GBM(int n, float mu, float sigma, float lamb
 	return jump_gbm;
 }
 
+xt::xarray<double> SimFunc::sim_kou_GBM_paths(int num_paths, int n, float mu, float sigma, float lambda_arrival, float p_pos_jump, float lambda_pos, float lambda_neg, float dt, float S0)
+{
+	xt::xarray<double> paths = xt::zeros<double>({ n + 1, num_paths });
+	for (int i = 0; i < num_paths; i++) {
+		xt::xarray<double> S_path = sim_kou_GBM(n, mu, sigma, lambda_arrival, p_pos_jump, lambda_pos, lambda_neg, dt, S0);
+		auto col = xt::col(paths, i);
+		col = S_path;
+	}
+	return paths;
+}
+
 xt::xarray<double> SimFunc::sim_Gamma(int n, float a, float b, float dt)
 {	
 	assert(a > 0);
