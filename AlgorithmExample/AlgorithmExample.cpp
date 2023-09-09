@@ -11,13 +11,16 @@ void sorting_example();
 void duplicates_example();
 bool hand_has_duplicate_values(std::vector<Card>& hand);
 std::vector<Card> get_duplicated_cards(std::vector<Card>& hand);
+std::map<int, std::vector<int>> get_duplicated_idxs(std::vector<Card>& hand);
 void get_duplicate_example();
+void erase_duplicates_example();
 
 int main()
 {
     //sorting_example();
     //duplicates_example();
-    get_duplicate_example();
+    //get_duplicate_example();
+    erase_duplicates_example();
     return 0;
 
 }
@@ -136,4 +139,89 @@ std::vector<Card> get_duplicated_cards(std::vector<Card>& hand)
     }
     
     return duplicates;
+}
+
+std::map<int, std::vector<int>> get_duplicated_idxs(std::vector<Card>& hand)
+{
+    std::map<int, std::vector<int>> res;
+    
+    std::vector<int> duplicates;
+    std::map<int, int> m_value_count;
+    std::map<int, int> first_app;
+
+    for (int i = 0; i < hand.size(); i++) {
+        Card c = hand.at(i);
+        int card_value = c.get_num_value();
+        ++m_value_count[card_value];
+        if (m_value_count[card_value] == 1) {
+            first_app[card_value] = i;
+        }
+
+        if (m_value_count[card_value] > 1) {
+            res[card_value].push_back(i);
+            /*
+            if (res.find(card_value) == res.end()) {
+                res[card_value] = {};
+                res[card_value].push_back(i);
+            }
+            else {
+                res[card_value].push_back(i);
+            }
+            */
+        }        
+    }
+
+    std::map<int, int>::iterator it;
+    for (it = m_value_count.begin(); it != m_value_count.end(); it++) {
+        int card_value = it->first;
+        int count = it->second;
+        if (count > 1) {
+            int idx = first_app[card_value];
+            res[card_value].insert(res[card_value].begin(), idx);
+        }
+    }
+    
+    return res;
+}
+
+void erase_duplicates_example()
+{
+    Card c4 = Card("D", "A");
+    Card c3 = Card("D", "K");
+    Card c2 = Card("H", "K");
+    Card c1 = Card("S", "Q");
+    Card c0 = Card("S", "A");
+
+    std::vector<Card> hand1{c0, c1, c2, c3, c4 };
+
+    std::cout << "Hand before erasing" << std::endl;
+    for (Card c : hand1) {
+        std::cout << c.to_string() << std::endl;
+    }
+
+    std::map<int, std::vector<int>> dup_map = get_duplicated_idxs(hand1);
+
+
+    std::vector<int> idxs_to_erase;
+    std::map<int, std::vector<int>>::iterator it;
+    for (it = dup_map.begin(); it != dup_map.end(); it++) {
+        int card_value = it->first;
+        std::vector<int> dup_idxs = it->second;
+        for (int i = 1; i < dup_idxs.size(); i++) {
+            idxs_to_erase.push_back(dup_idxs.at(i));
+        }        
+    }
+
+    std::sort(idxs_to_erase.begin(), idxs_to_erase.end());
+    for (int i = idxs_to_erase.size() - 1; i >= 0; i--) {
+        int idx_to_erase = idxs_to_erase.at(i);
+        hand1[idx_to_erase] = hand1.back();
+        hand1.pop_back();
+    }
+
+    std::cout << "Hand after erasing" << std::endl;
+    for (Card c : hand1) {
+        std::cout << c.to_string() << std::endl;
+    }
+
 }
