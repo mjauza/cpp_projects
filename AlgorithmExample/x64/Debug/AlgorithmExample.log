@@ -1,1 +1,3 @@
-﻿  AlgorithmExample.vcxproj -> C:\Users\david\Documents\cpp_projects\cpp_projects\AlgorithmExample\x64\Debug\AlgorithmExample.exe
+﻿  AlgorithmExample.cpp
+C:\Users\david\Documents\cpp_projects\cpp_projects\AlgorithmExample\AlgorithmExample.cpp(242,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  AlgorithmExample.vcxproj -> C:\Users\david\Documents\cpp_projects\cpp_projects\AlgorithmExample\x64\Debug\AlgorithmExample.exe

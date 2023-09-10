@@ -3,17 +3,20 @@
 #include <vector>
 #include <tuple>
 #include <set>
+#include <algorithm>
+#include <iterator>
 class Hand
 {
 public:
 	Hand();
 	void add_card(Card c);
 	int get_hand_value();
-	bool can_i_split(Card split_card);
-	std::tuple<Hand, Hand> get_splited_hands(Card split_card);
+	static bool can_split(Hand& hand, int card_value_to_split);
+	static std::vector<Hand> split_hand(Hand& hand, int card_value_to_split);
+	static std::map<int, std::vector<int>> get_duplicated_idxs(Hand& hand);
 	template<typename T>
 	static std::set<T> findDuplicates(std::vector<T> vec);
-private:
+	void print_hand();
 	std::vector<Card> hand;
 	
 };

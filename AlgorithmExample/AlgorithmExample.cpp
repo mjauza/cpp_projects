@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include "Hand.h"
 
 void sorting_example();
 void duplicates_example();
@@ -14,14 +15,39 @@ std::vector<Card> get_duplicated_cards(std::vector<Card>& hand);
 std::map<int, std::vector<int>> get_duplicated_idxs(std::vector<Card>& hand);
 void get_duplicate_example();
 void erase_duplicates_example();
+void hand_split_example();
 
 int main()
 {
     //sorting_example();
     //duplicates_example();
     //get_duplicate_example();
-    erase_duplicates_example();
+    //erase_duplicates_example();
+    hand_split_example();
     return 0;
+
+}
+
+void hand_split_example()
+{
+    Card c4 = Card("D", "A");
+    Card c3 = Card("D", "K");
+    Card c2 = Card("H", "2");
+    Card c1 = Card("S", "Q");
+
+    Hand hand = Hand();
+    hand.hand.push_back(c1);
+    hand.hand.push_back(c2);
+    hand.hand.push_back(c3);
+    hand.hand.push_back(c4);
+
+    std::vector<Hand> hand_split = Hand::split_hand( hand, 10);
+    int i = 1;
+    for (Hand h : hand_split) {
+        std::cout << "Hand " << i << ":" << std::endl;
+        h.print_hand();
+        i++;
+    }
 
 }
 
