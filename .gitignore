@@ -34,3 +34,9 @@
 out/
 *.cbp
 *.layout
+
+*.sln
+*.vcxproj.*
+*.vcxproj*
+x64/*
+*/x64/*
