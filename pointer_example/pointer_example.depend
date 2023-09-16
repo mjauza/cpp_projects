@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1692114170 source:c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\main.cpp
+1694860265 source:c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\main.cpp
 	<iostream>
 	"Rectangle.h"
 	<string>
 	<memory>
 	<BM.h>
+	<algorithm>
+	<vector>
 
 1692112257 c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\include\rectangle.h
 	<string>
@@ -12,11 +14,12 @@
 1692112290 source:c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\src\rectangle.cpp
 	"Rectangle.h"
 
-1692117040 c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\include\bm.h
+1692118586 c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\include\bm.h
 	<memory>
 	<array>
+	<vector>
 
-1692117040 source:c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\src\bm.cpp
+1692118794 source:c:\users\david\documents\cpp_projects\cpp_projects\pointer_example\src\bm.cpp
 	"BM.h"
 	<random>
 	<cmath>
